@@ -1,17 +1,20 @@
 
 %.beam: %.erl
-	erlc -o test/ $<
+	erlc -o t/ $<
 
-all:
+all: deps
 	@mkdir -p ebin
 	@./rebar compile
 
-check: test/etap.beam test/util.beam
-	@prove test/*.t
+deps:
+	@rebar get-deps
 
-check_verbose: test/etap.beam test/util.beam
-	@prove -v test/*.t
+check: t/etap.beam t/util.beam
+	@prove t/*.t
+
+check_verbose: t/etap.beam t/util.beam
+	@prove -v t/*.t
 
 clean:
 	@./rebar clean
-	@rm -f test/*.beam
+	@rm -f t/*.beam
