@@ -4,7 +4,7 @@
 
 all: deps
 	@mkdir -p ebin
-	@./rebar compile
+	@rebar compile
 
 deps:
 	@rebar get-deps
@@ -16,5 +16,5 @@ check_verbose: t/etap.beam t/util.beam
 	@prove -v t/*.t
 
 clean:
-	@./rebar clean
+	@rebar clean
 	@rm -f t/*.beam
